@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import contactBg from "../assets/contact-bg.png"; // Your background image
+import contactBg from "../assets/contact-bg.png"; // Background image
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    message: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -34,7 +34,7 @@ const Contact = () => {
       }
 
       setSubmitted(true);
-      setFormData({ name: "", email: "", phone: "" });
+      setFormData({ name: "", email: "", message: "" });
     } catch (err) {
       console.error("Error:", err);
       setError("Something went wrong. Please try again.");
@@ -109,12 +109,12 @@ const Contact = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Your Phone Number"
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="4"
             className="w-full px-4 py-2 bg-white/10 text-white placeholder-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={formData.phone}
+            value={formData.message}
             onChange={handleChange}
             required
           />
