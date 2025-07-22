@@ -9,15 +9,23 @@ const { getFirestore } = require("firebase-admin/firestore");
 
 // Initialize Firebase Admin
 initializeApp({
-  credential: applicationDefault(), // or use service account JSON (for production)
+  credential: applicationDefault(), // Or use service account JSON for production
 });
 const firestore = getFirestore();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// -------------------- CORS SETUP --------------------
+app.use(
+  cors({
+    origin: "https://portfolio-website.vercel.app", // ✅ Replace with your actual frontend Vercel URL
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
 // -------------------- MIDDLEWARE --------------------
-app.use(cors());
 app.use(express.json());
 
 // -------------------- MONGODB CONNECTION --------------------
@@ -47,7 +55,7 @@ app.post("/api/contact", async (req, res) => {
     const mongoEntry = new Contact({ name, email, message });
     await mongoEntry.save();
 
-    // ✅ Also save to Firebase
+    // ✅ Save to Firebase
     await firestore.collection("contacts").add({
       name,
       email,
