@@ -10,17 +10,35 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "" });
+    setError("");
+    try {
+      const res = await fetch("https://portfolio-website-3fft.onrender.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to submit. Please try again.");
+      }
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "" });
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -103,6 +121,9 @@ const Contact = () => {
 
           {submitted && (
             <p className="text-green-400 text-sm">Submitted! Thank you 🙂</p>
+          )}
+          {error && (
+            <p className="text-red-400 text-sm">{error}</p>
           )}
 
           <button
