@@ -1,0 +1,12 @@
+{
+  "componentPath": "src/components",
+  "rsc": false,
+  "tsx": false,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/index.css",
+    "baseColor": "zinc",
+    "cssVariables": true
+  }
+}
+
