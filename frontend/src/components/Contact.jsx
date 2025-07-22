@@ -26,7 +26,11 @@ const Contact = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
       });
 
       if (!res.ok) {
