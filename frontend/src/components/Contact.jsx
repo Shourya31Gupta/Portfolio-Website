@@ -21,7 +21,7 @@ const Contact = () => {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("https://portfolio-website-3fft.onrender.com/api/contact", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ const Contact = () => {
         body: JSON.stringify({
           name,
           email,
-          message,
+          message
         }),
       });
 
