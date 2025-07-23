@@ -5,7 +5,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "", // New field
+    phone: "",
   });
 
   const [status, setStatus] = useState("");
@@ -29,14 +29,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="min-h-[70vh] flex items-center justify-center px-4 text-white">
+    <section
+      id="contact"
+      className="min-h-[70vh] flex items-center justify-center px-4 text-white"
+    >
       <form
         onSubmit={handleSubmit}
         className="bg-zinc-900 p-6 rounded-2xl shadow-md w-full max-w-lg border border-zinc-700"
       >
-        <h2 className="text-3xl font-bold mb-4 text-white">Contact Me</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white">Contact Me</h2>
 
         {/* Name */}
+        <label className="block text-sm font-medium text-zinc-300 mb-1">
+          Name
+        </label>
         <input
           type="text"
           name="name"
@@ -48,6 +54,9 @@ export default function Contact() {
         />
 
         {/* Email */}
+        <label className="block text-sm font-medium text-zinc-300 mb-1">
+          Email
+        </label>
         <input
           type="email"
           name="email"
@@ -58,7 +67,10 @@ export default function Contact() {
           className="w-full mb-4 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
         />
 
-        {/* Phone Number */}
+        {/* Contact Number */}
+        <label className="block text-sm font-medium text-zinc-300 mb-1">
+          Contact Number
+        </label>
         <input
           type="tel"
           name="phone"
@@ -66,13 +78,13 @@ export default function Contact() {
           value={formData.phone}
           onChange={handleChange}
           required
-          className="w-full mb-4 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
+          className="w-full mb-6 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
         />
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 rounded bg-cyan-500 hover:bg-cyan-600 text-white font-semibold"
+          className="w-full py-2 rounded bg-white text-black font-semibold"
         >
           Submit
         </button>
