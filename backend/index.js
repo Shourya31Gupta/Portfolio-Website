@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// CORS for Vercel frontend
+// Enable CORS for frontend on Vercel
 app.use(
   cors({
     origin: "https://portfolio-website-shouryas-projects-6a2c0b12.vercel.app",
