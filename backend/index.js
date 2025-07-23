@@ -9,12 +9,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Enable CORS for frontend on Vercel
+// Enable all origins for testing
 app.use(
   cors({
-    origin: "https://portfolio-website-shouryas-projects-6a2c0b12.vercel.app",
+    origin: "*", // For testing — change this to your frontend URL after confirming it's working
     methods: ["GET", "POST"],
-    credentials: true,
   })
 );
 

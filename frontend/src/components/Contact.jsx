@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Contact() {
@@ -7,7 +7,6 @@ export default function Contact() {
     email: "",
     message: "",
   });
-
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
@@ -19,7 +18,7 @@ export default function Contact() {
     setStatus("Sending...");
 
     try {
-      const response = await axios.post(
+      const res = await axios.post(
         "https://portfolio-backend-44u0.onrender.com/api/contact",
         formData,
         {
@@ -28,57 +27,51 @@ export default function Contact() {
           },
         }
       );
-
-      if (response.status === 200) {
-        setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setStatus("Failed to send message. Please try again later.");
-      }
+      setStatus("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error(error);
-      setStatus("Error sending message. Please try again later.");
+      setStatus("Failed to send. Please try again.");
     }
   };
 
   return (
-    <section id="contact" className="p-8 max-w-3xl mx-auto text-white">
-      <h2 className="text-4xl font-bold mb-6 text-center">Contact Me</h2>
-      <form onSubmit={handleSubmit} className="space-y-4 bg-zinc-900 p-6 rounded-xl">
+    <section className="text-white p-8">
+      <h2 className="text-3xl font-bold mb-4">Contact Me</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-md">
         <input
           type="text"
           name="name"
           placeholder="Your Name"
-          className="w-full p-3 rounded bg-zinc-800 text-white"
           value={formData.name}
           onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
           required
         />
         <input
           type="email"
           name="email"
           placeholder="Your Email"
-          className="w-full p-3 rounded bg-zinc-800 text-white"
           value={formData.email}
           onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
           required
         />
         <textarea
           name="message"
           placeholder="Your Message"
-          className="w-full p-3 rounded bg-zinc-800 text-white"
-          rows="5"
           value={formData.message}
           onChange={handleChange}
+          className="w-full p-2 bg-gray-800 text-white rounded"
           required
-        ></textarea>
+        />
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded font-semibold"
+          className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
         >
-          Send Message
+          Send
         </button>
-        {status && <p className="text-sm text-center mt-2">{status}</p>}
+        {status && <p className="text-sm mt-2">{status}</p>}
       </form>
     </section>
   );
