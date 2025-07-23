@@ -1,18 +1,16 @@
-const express = require('express');
+import express from "express";
+import Contact from "../models/contactModel.js";
+
 const router = express.Router();
-const Contact = require('../models/Contact');
 
-router.post('/', async (req, res) => {
-  const { name, email, phone } = req.body;
-
+router.post("/", async (req, res) => {
   try {
-    const newContact = new Contact({ name, email, phone });
+    const newContact = new Contact(req.body);
     await newContact.save();
-    res.status(200).json({ message: 'Contact saved successfully' });
+    res.status(201).json({ message: "Message sent successfully!" });
   } catch (error) {
-    console.error('Error saving contact:', error);
-    res.status(500).json({ message: 'Something went wrong' });
+    res.status(500).json({ error: "Failed to send message" });
   }
 });
 
-module.exports = router;
+export default router;
