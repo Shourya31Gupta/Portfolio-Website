@@ -1,29 +1,40 @@
 import { useState } from "react";
+import contactBg from "../assets/contact-bg.png"; // optional background image
 import axios from "axios";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
+    contact: "",
   });
 
   const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setStatus("Submitting...");
 
     try {
-      await axios.post("/api/contact", formData);
-      setStatus("Message sent successfully!");
-      setFormData({ name: "", email: "", phone: "" });
+      const response = await axios.post(
+        "https://portfolio-backend-44u0.onrender.com/api/contact",
+        formData
+      );
+
+      if (response.status === 200) {
+        setStatus("Submitted successfully!");
+        setFormData({ name: "", email: "", contact: "" });
+      } else {
+        setStatus("Something went wrong. Please try again.");
+      }
     } catch (error) {
-      console.error(error);
       setStatus("Something went wrong. Please try again.");
     }
   };
@@ -31,69 +42,72 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-[70vh] flex items-center justify-center px-4 text-white"
+      className="min-h-screen flex items-center justify-center px-4 text-white bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${contactBg})`, // use your own image or comment this
+        // backgroundColor: "#0a0a0a", // use this if you want solid background instead
+      }}
     >
-      <form
-        onSubmit={handleSubmit}
-        className="bg-zinc-900 p-6 rounded-2xl shadow-md w-full max-w-lg border border-zinc-700"
-      >
-        <h2 className="text-3xl font-bold mb-6 text-white">Contact Me</h2>
+      <div className="w-full max-w-md bg-zinc-900 bg-opacity-90 p-8 rounded-2xl shadow-2xl border border-zinc-800">
+        <h2 className="text-3xl font-semibold text-center mb-6">Contact Me</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
 
-        {/* Name */}
-        <label className="block text-sm font-medium text-zinc-300 mb-1">
-          Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className="w-full mb-4 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
-        />
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
 
-        {/* Email */}
-        <label className="block text-sm font-medium text-zinc-300 mb-1">
-          Email
-        </label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="w-full mb-4 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
-        />
+          <div>
+            <label htmlFor="contact" className="block text-sm font-medium mb-1">
+              Contact Number
+            </label>
+            <input
+              type="tel"
+              name="contact"
+              id="contact"
+              required
+              value={formData.contact}
+              onChange={handleChange}
+              className="w-full px-4 py-2 bg-zinc-800 border border-zinc-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
 
-        {/* Contact Number */}
-        <label className="block text-sm font-medium text-zinc-300 mb-1">
-          Contact Number
-        </label>
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Your Contact Number"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          className="w-full mb-6 px-4 py-2 rounded bg-zinc-800 border border-zinc-700 text-white"
-        />
+          <button
+            type="submit"
+            className="w-full py-2 mt-4 bg-indigo-600 rounded-md text-white font-semibold transition duration-200"
+          >
+            Submit
+          </button>
+        </form>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full py-2 rounded bg-white text-black font-semibold"
-        >
-          Submit
-        </button>
-
-        {/* Status Message */}
         {status && (
-          <p className="mt-4 text-center text-sm text-zinc-300">{status}</p>
+          <p className="text-center text-sm mt-4 text-zinc-300">{status}</p>
         )}
-      </form>
+      </div>
     </section>
   );
 }
