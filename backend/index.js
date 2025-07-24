@@ -4,7 +4,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import contactRoute from "./routes/contactRoute.js";
+import contactRoute from "./routes/contactRoutes.js";
 
 dotenv.config();
 
