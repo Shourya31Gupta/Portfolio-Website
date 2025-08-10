@@ -23,6 +23,13 @@ const publications = [
     journal: "International Research Journal Of Engineering & Technology",
     date: "July, 2025",
     link: "https://www.irjet.net/archives/V12/i7/IRJET-V12I702.pdf",
+  },
+  {
+    title: "Hybrid Computing: Redefining Computation",
+    authors: "Shourya Gupta, Abhiraj Nair",
+    journal: "International Research Journal Of Engineering & Technology",
+    date: "August, 2025",
+    link: "https://irjet.net/archives/V12/i8/IRJET-V12I804.pdf",
   }
 ];
 
