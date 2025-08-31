@@ -11,6 +11,7 @@ const Achievements = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   const openModal = async (achievement) => {
+    console.log("🎯 Opening modal for:", achievement.title);
     const images = [];
 
     try {
@@ -18,8 +19,9 @@ const Achievements = () => {
         const img = await import(`../assets/${achievement.folder}/img${i}.jpg`);
         images.push(img.default);
       }
+      console.log("📸 Loaded images:", images.length, "images");
     } catch (error) {
-      console.warn("Some gallery images might be missing:", error);
+      console.warn("⚠️ Some gallery images might be missing:", error);
     }
 
     setSelected(achievement);
@@ -27,17 +29,26 @@ const Achievements = () => {
   };
 
   const closeModal = () => {
+    console.log("❌ Closing modal");
     setSelected(null);
     setGallery([]);
     setZoomedImage(null);
   };
 
   const zoomImage = (imageSrc) => {
+    console.log("🔍 Zooming image:", imageSrc);
     setZoomedImage(imageSrc);
   };
 
   const closeZoom = () => {
+    console.log("❌ Closing zoom");
     setZoomedImage(null);
+  };
+
+  const handleImageClick = (e, imageSrc) => {
+    e.stopPropagation();
+    console.log("🖱️ Image clicked, zooming:", imageSrc);
+    zoomImage(imageSrc);
   };
 
   return (
@@ -96,6 +107,7 @@ const Achievements = () => {
             </button>
             <h3 className="text-2xl font-bold text-white mb-2">{selected.title}</h3>
             <p className="text-gray-300 mb-4">{selected.competition}</p>
+            <p className="text-blue-400 text-sm mb-4">💡 Click on any image below to zoom in!</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {gallery.map((img, idx) => (
@@ -103,14 +115,18 @@ const Achievements = () => {
                   <img
                     src={img}
                     alt={`Gallery ${idx + 1}`}
-                    onClick={() => zoomImage(img)}
-                    className="w-full h-60 object-cover rounded-lg cursor-pointer transition-transform duration-200 hover:scale-105 hover:shadow-lg"
+                    onClick={(e) => handleImageClick(e, img)}
+                    className="w-full h-60 object-cover rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-blue-400"
+                    style={{ cursor: 'pointer' }}
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center pointer-events-none">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white text-center">
-                      <div className="text-xl">🔍</div>
-                      <div className="text-xs">Click to zoom</div>
+                      <div className="text-xl mb-1">🔍</div>
+                      <div className="text-xs font-semibold">Click to zoom</div>
                     </div>
+                  </div>
+                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    Click me!
                   </div>
                 </div>
               ))}
@@ -129,7 +145,7 @@ const Achievements = () => {
             <img
               src={zoomedImage}
               alt="Zoomed view"
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
             <button
@@ -140,6 +156,9 @@ const Achievements = () => {
             </button>
             <div className="absolute bottom-2 left-2 text-white text-sm bg-black/50 px-2 py-1 rounded">
               Click outside to close
+            </div>
+            <div className="absolute top-2 left-2 text-white text-sm bg-green-500 px-2 py-1 rounded">
+              ✅ Zoomed!
             </div>
           </div>
         </div>
