@@ -8,7 +8,7 @@ Modal.setAppElement("#root");
 const Achievements = () => {
   const [selected, setSelected] = useState(null);
   const [gallery, setGallery] = useState([]);
-  const [zoomedImage, setZoomedImage] = useState(null);
+  const [zoomedImages, setZoomedImages] = useState({});
 
   const openModal = async (achievement) => {
     console.log("🎯 Opening modal for:", achievement.title);
@@ -26,29 +26,26 @@ const Achievements = () => {
 
     setSelected(achievement);
     setGallery(images);
+    setZoomedImages({}); // Reset zoom levels
   };
 
   const closeModal = () => {
     console.log("❌ Closing modal");
     setSelected(null);
     setGallery([]);
-    setZoomedImage(null);
+    setZoomedImages({});
   };
 
-  const zoomImage = (imageSrc) => {
-    console.log("🔍 Zooming image:", imageSrc);
-    setZoomedImage(imageSrc);
+  const toggleImageZoom = (imageIndex) => {
+    console.log("🖱️ Toggling zoom for image:", imageIndex);
+    setZoomedImages(prev => ({
+      ...prev,
+      [imageIndex]: !prev[imageIndex]
+    }));
   };
 
-  const closeZoom = () => {
-    console.log("❌ Closing zoom");
-    setZoomedImage(null);
-  };
-
-  const handleImageClick = (e, imageSrc) => {
-    e.stopPropagation();
-    console.log("🖱️ Image clicked, zooming:", imageSrc);
-    zoomImage(imageSrc);
+  const getZoomLevel = (imageIndex) => {
+    return zoomedImages[imageIndex] ? 2.5 : 1; // 1 = normal, 2.5 = zoomed
   };
 
   return (
@@ -95,7 +92,7 @@ const Achievements = () => {
         </div>
       </div>
 
-      {/* ✅ Enhanced Modal with Zoom */}
+      {/* ✅ Enhanced Modal with Progressive Zoom */}
       {selected && (
         <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto flex items-center justify-center px-4 py-10">
           <div className="bg-gray-900 rounded-xl p-6 max-w-6xl w-full relative">
@@ -107,58 +104,53 @@ const Achievements = () => {
             </button>
             <h3 className="text-2xl font-bold text-white mb-2">{selected.title}</h3>
             <p className="text-gray-300 mb-4">{selected.competition}</p>
-            <p className="text-blue-400 text-sm mb-4">💡 Click on any image below to zoom in!</p>
+            <p className="text-blue-400 text-sm mb-4">💡 Click on any image to zoom in/out within the modal!</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {gallery.map((img, idx) => (
-                <div key={idx} className="relative group">
-                  <img
-                    src={img}
-                    alt={`Gallery ${idx + 1}`}
-                    onClick={(e) => handleImageClick(e, img)}
-                    className="w-full h-60 object-cover rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg border-2 border-transparent hover:border-blue-400"
-                    style={{ cursor: 'pointer' }}
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 flex items-center justify-center pointer-events-none">
+                <div key={idx} className="relative group overflow-hidden rounded-lg">
+                  <div 
+                    className="transition-all duration-300 ease-in-out cursor-pointer"
+                    style={{
+                      transform: `scale(${getZoomLevel(idx)})`,
+                      transformOrigin: 'center'
+                    }}
+                    onClick={() => toggleImageZoom(idx)}
+                  >
+                    <img
+                      src={img}
+                      alt={`Gallery ${idx + 1}`}
+                      className="w-full h-60 object-cover rounded-lg"
+                    />
+                  </div>
+                  
+                  {/* Zoom Indicator */}
+                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                    {zoomedImages[idx] ? '🔍 Zoomed' : '🔍 Click to zoom'}
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200 flex items-center justify-center pointer-events-none">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-white text-center">
                       <div className="text-xl mb-1">🔍</div>
-                      <div className="text-xs font-semibold">Click to zoom</div>
+                      <div className="text-xs font-semibold">
+                        {zoomedImages[idx] ? 'Click to zoom out' : 'Click to zoom in'}
+                      </div>
                     </div>
-                  </div>
-                  <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    Click me!
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* ✅ Zoomed Image Modal */}
-      {zoomedImage && (
-        <div 
-          className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center p-4"
-          onClick={closeZoom}
-        >
-          <div className="relative max-w-full max-h-full">
-            <img
-              src={zoomedImage}
-              alt="Zoomed view"
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
-            <button
-              onClick={closeZoom}
-              className="absolute top-2 right-2 text-white text-2xl hover:text-red-400 transition-colors duration-200 bg-black/50 rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              &times;
-            </button>
-            <div className="absolute bottom-2 left-2 text-white text-sm bg-black/50 px-2 py-1 rounded">
-              Click outside to close
-            </div>
-            <div className="absolute top-2 left-2 text-white text-sm bg-green-500 px-2 py-1 rounded">
-              ✅ Zoomed!
+            
+            {/* Zoom Instructions */}
+            <div className="mt-6 p-4 bg-blue-900/20 rounded-lg border border-blue-500/30">
+              <h4 className="text-blue-300 font-semibold mb-2">🎯 How to Use Zoom:</h4>
+              <ul className="text-blue-200 text-sm space-y-1">
+                <li>• <strong>Click once</strong> on any image to zoom in</li>
+                <li>• <strong>Click again</strong> to zoom out</li>
+                <li>• Zoom happens within the modal (no full-page zoom)</li>
+                <li>• Each image can be zoomed independently</li>
+              </ul>
             </div>
           </div>
         </div>
