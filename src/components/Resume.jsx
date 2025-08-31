@@ -33,7 +33,7 @@ const Resume = () => {
           </h3>
           <ul className="text-zinc-300 text-base space-y-3">
             <li>💻 Research Author – IRJET </li>
-            <li>⚙️ Built 5+ full-stack projects using React, Firebase</li>
+            <li>⚙️ Built 2 full-stack projects using React, Firebase</li>
             <li>💼 3 Month Internship at DBA Consultants Pvt. Ltd.</li>
           </ul>
         </div>
@@ -46,7 +46,7 @@ const Resume = () => {
           <ul className="text-zinc-300 text-base space-y-3">
             <li>🎓 Currently pursuing Diploma in Computer Engineering</li>
             <li>📘 Will pursue B.Tech (Lateral Entry) Post Diploma</li>
-            <li>🧠 Published 3 Research Papers</li>
+            <li>🧠 Published 4 Research Papers</li>
           </ul>
         </div>
 

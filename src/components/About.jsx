@@ -13,8 +13,8 @@ export default function About() {
   ];
 
   const achievements = [
-    "Published 1 research paper",
-    "Co-authored 2 research papers",
+    "Published 4 research papes",
+    "Co-authored 3 research papers",
     "Specialized in Swarm Robotics",
     "Expertise in Healthcare Robotics",
     "Diploma in Computer Engineering",
@@ -59,7 +59,7 @@ export default function About() {
               <p className="text-lg leading-8 mb-6 text-zinc-100">
                 I'm especially interested in{" "}
                 <span className="text-white font-bold">Database Engineering</span> and{" "}
-                <span className="text-white font-bold">Cybersecurity</span>, and have already published one research paper and co-authored two research papers on innovative tech topics like
+                <span className="text-white font-bold">Cybersecurity</span>, and have already published four research paper and co-authored three research papers on innovative tech topics like
                 Swarm Robotics and Robotics in Healthcare.
               </p>
               <p className="text-lg leading-8 text-zinc-100">
