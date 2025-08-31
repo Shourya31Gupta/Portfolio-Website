@@ -7,6 +7,7 @@ import financeImg from "../assets/finance-tracker.jpg";
 import readingImg from "../assets/reading-goals.png";
 import apodImg from "../assets/apod-app.png";
 import portfolioImg from "../assets/portfolio.png";
+import botImg from "../assets/resume-bot.png";
 
 const projects = [
   {
@@ -44,6 +45,15 @@ const projects = [
     github: "https://github.com/Shourya31Gupta/APOD-App",
     live: "https://apod-app-shouryas-projects-6a2c0b12.vercel.app/",
     category: "Web App"
+  },
+  {
+    title: "Resume Helper Bot",
+    image: botImg,
+    description: "It is an AI-powered tool where you can upload your resume, get a concise summary of it, and receive an improved version with enhanced structure, wording, and presentation for better impact.",
+    tech: ["Vite", "React", "Tailwind CSS", "Gemini API"],
+    github: "https://github.com/Shourya31Gupta/Resume-Helper-Bot",
+    live: "https://resume-helper-bot.vercel.app/",
+    category: "AI Integrated Web App"
   },
 ];
 
