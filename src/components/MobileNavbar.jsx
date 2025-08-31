@@ -1,5 +1,4 @@
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Button } from "./ui/button";
+
 import { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaHome, FaUser, FaCode, FaTrophy, FaFileAlt, FaEnvelope, FaShieldAlt, FaTimes } from "react-icons/fa";
@@ -38,16 +37,24 @@ export default function MobileNavbar() {
       </div>
 
       {/* Mobile Menu Button */}
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild>
-          <Button 
-            variant="ghost" 
-            className="p-2 hover:bg-white/10 rounded-xl transition-all duration-300"
-          >
-            <GiHamburgerMenu className="text-2xl" />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="glass-dark border-r border-white/10 text-white p-0 w-80">
+      <button 
+        onClick={() => setOpen(!open)}
+        className="p-2 hover:bg-white/10 rounded-xl transition-all duration-300"
+      >
+        <GiHamburgerMenu className="text-2xl" />
+      </button>
+      
+      {/* Mobile Menu Overlay */}
+      {open && (
+        <div className="fixed inset-0 z-50">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/50" 
+            onClick={() => setOpen(false)}
+          />
+          
+          {/* Menu Content */}
+          <div className="absolute left-0 top-0 h-full w-80 glass-dark border-r border-white/10 text-white p-0">
           {/* Header */}
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center justify-between mb-4">
@@ -62,14 +69,12 @@ export default function MobileNavbar() {
                   <p className="text-xs text-zinc-400">Portfolio</p>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={() => setOpen(false)}
                 className="p-2 hover:bg-white/10 rounded-xl"
               >
                 <FaTimes className="text-lg" />
-              </Button>
+              </button>
             </div>
           </div>
 
@@ -79,23 +84,21 @@ export default function MobileNavbar() {
               {sections.map((section) => {
                 const Icon = section.icon;
                 return (
-                  <Button
+                  <button
                     key={section.id}
-                    variant="ghost"
                     className="justify-start text-left w-full text-lg p-4 rounded-xl hover:bg-white/10 hover:scale-105 transition-all duration-300 group"
                     onClick={() => scrollToSection(section.id)}
                   >
                     <Icon className="text-lg mr-3 text-zinc-400 group-hover:text-white transition-colors duration-300" />
                     {section.label}
-                  </Button>
+                  </button>
                 );
               })}
             </div>
             
             {/* Admin Link */}
             <div className="pt-6 mt-6 border-t border-white/10">
-              <Button
-                variant="ghost"
+              <button
                 className="justify-start text-left w-full text-lg p-4 rounded-xl text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 transition-all duration-300 group"
                 onClick={() => {
                   window.location.href = "/admin/contact";
@@ -104,7 +107,7 @@ export default function MobileNavbar() {
               >
                 <span className="text-lg mr-3">🔐</span>
                 Admin Panel
-              </Button>
+              </button>
             </div>
 
             {/* Footer */}
@@ -113,8 +116,9 @@ export default function MobileNavbar() {
               <p className="mt-1">Made with ❤️ & React</p>
             </div>
           </nav>
-        </SheetContent>
-      </Sheet>
+        </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -1,4 +1,4 @@
-import { Button } from "./ui/button";
+
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import projectsBg from "../assets/projects-bg.png";
 
@@ -111,31 +111,24 @@ export default function Projects() {
 
               {/* Action Buttons */}
               <div className="flex gap-2 mt-auto">
-                <Button 
-                  asChild 
-                  variant="default" 
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm border-0"
+                <a 
+                  href={project.live} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm border-0 px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors duration-200"
                 >
-                  <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1">
-                    <FaExternalLinkAlt className="text-xs" />
-                    Live Demo
-                  </a>
-                </Button>
+                  <FaExternalLinkAlt className="text-xs" />
+                  Live Demo
+                </a>
 
-                <Button 
-                  asChild 
-                  variant="ghost" 
-                  className="px-3 border border-white/30 text-white hover:bg-white/10 text-sm"
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3 py-2 border border-white/30 text-white hover:bg-white/10 text-sm rounded-lg flex items-center transition-colors duration-200"
                 >
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    <FaGithub className="text-sm" />
-                  </a>
-                </Button>
+                  <FaGithub className="text-sm" />
+                </a>
               </div>
             </div>
           ))}
