@@ -54,7 +54,7 @@ export default function MobileNavbar() {
           />
           
           {/* Menu Content */}
-          <div className="absolute left-0 top-0 h-full w-80 glass-dark border-r border-white/10 text-white p-0">
+          <div className="absolute right-0 top-0 h-full w-80 glass-dark border-l border-white/10 text-white p-0">
           {/* Header */}
           <div className="p-6 border-b border-white/10">
             <div className="flex items-center justify-between mb-4">
@@ -79,41 +79,43 @@ export default function MobileNavbar() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-col p-6">
-            <div className="space-y-2">
-              {sections.map((section) => {
-                const Icon = section.icon;
-                return (
-                  <button
-                    key={section.id}
-                    className="justify-start text-left w-full text-lg p-4 rounded-xl hover:bg-blue-500/10 hover:scale-105 transition-all duration-300 group"
-                    onClick={() => scrollToSection(section.id)}
-                  >
-                    <Icon className="text-lg mr-3 text-zinc-400 group-hover:text-white transition-colors duration-300" />
-                    {section.label}
-                  </button>
-                );
-              })}
+          <nav className="flex flex-col h-full bg-black">
+            <div className="flex-1 p-6 bg-gray-900">
+              <div className="space-y-3">
+                {sections.map((section) => {
+                  const Icon = section.icon;
+                  return (
+                    <button
+                      key={section.id}
+                      className="w-full text-left p-4 rounded-xl hover:bg-blue-600/20 transition-all duration-200 group flex items-center border border-gray-600 hover:border-blue-500"
+                      onClick={() => scrollToSection(section.id)}
+                    >
+                      <Icon className="text-lg mr-4 text-blue-400 group-hover:text-blue-300 transition-colors duration-200" />
+                      <span className="text-base font-medium text-white group-hover:text-blue-200 transition-colors duration-200">
+                        {section.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            
-
 
             {/* Admin Link */}
-            <div className="pt-6 mt-6 border-t border-white/10">
+            <div className="p-6 border-t border-gray-600 bg-gray-900">
               <button
-                className="justify-start text-left w-full text-lg p-4 rounded-xl text-yellow-400 hover:text-yellow-300 hover:bg-yellow-400/10 transition-all duration-300 group"
+                className="w-full text-left p-4 rounded-xl text-yellow-300 hover:text-yellow-200 hover:bg-yellow-500/20 transition-all duration-200 group flex items-center border border-gray-600 hover:border-yellow-500"
                 onClick={() => {
                   window.location.href = "/admin/contact";
                   setOpen(false);
                 }}
               >
-                <span className="text-lg mr-3">🔐</span>
-                Admin Panel
+                <span className="text-lg mr-4">🔐</span>
+                <span className="text-base font-medium">Admin Panel</span>
               </button>
             </div>
 
             {/* Footer */}
-            <div className="mt-auto pt-6 text-center text-xs text-zinc-500">
+            <div className="mt-auto pt-6 text-center text-xs text-zinc-500 bg-gray-900">
               <p>© 2024 Shourya Gupta</p>
             </div>
           </nav>
