@@ -96,6 +96,8 @@ export default function MobileNavbar() {
               })}
             </div>
             
+
+
             {/* Admin Link */}
             <div className="pt-6 mt-6 border-t border-white/10">
               <button
@@ -113,7 +115,6 @@ export default function MobileNavbar() {
             {/* Footer */}
             <div className="mt-auto pt-6 text-center text-xs text-zinc-500">
               <p>© 2024 Shourya Gupta</p>
-              <p className="mt-1">Made with ❤️ & React</p>
             </div>
           </nav>
         </div>

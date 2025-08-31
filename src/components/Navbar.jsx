@@ -112,6 +112,8 @@ export default function Navbar() {
         })}
       </div>
       
+
+
       {/* Admin Link */}
       <div className="pt-6 border-t border-white/10">
         <a
@@ -127,7 +129,6 @@ export default function Navbar() {
       {/* Footer */}
       <div className="text-center text-xs text-zinc-500 pt-4">
         <p>© 2025 Shourya Gupta</p>
-        <p className="mt-1">Made with ❤️ & React</p>
       </div>
     </nav>
   );

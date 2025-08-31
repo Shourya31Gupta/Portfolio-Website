@@ -55,10 +55,12 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 
 3. **Environment Setup**
    - Copy `.env.example` to `.env`
-   - Fill in your Supabase credentials:
+   - Fill in your Supabase credentials and admin panel credentials:
      ```env
      VITE_SUPABASE_URL=your-supabase-project-url
      VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+     VITE_ADMIN_USERNAME=your-admin-username
+     VITE_ADMIN_PASSWORD=your-admin-password
      ```
 
 4. **Start development server**
@@ -101,6 +103,31 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 3. Verify your sender email address
 4. Add the API key to your Supabase Edge Function environment variables
 
+## 🔐 Admin Panel Setup
+
+### Authentication
+The admin panel provides secure access to view and manage contact form submissions.
+
+1. **Set Admin Credentials**
+   - Add your preferred admin username and password to your `.env` file:
+     ```env
+     VITE_ADMIN_USERNAME=your-chosen-username
+     VITE_ADMIN_PASSWORD=your-chosen-password
+     ```
+
+2. **Access Admin Panel**
+   - Navigate to `/admin/login` on your website
+   - Use the credentials you set in the environment variables
+   - After successful login, you'll be redirected to `/admin/contact`
+
+3. **Features**
+   - View all contact form submissions
+   - Delete unwanted submissions
+   - Secure logout functionality
+   - Responsive design for all devices
+
+**⚠️ Security Note**: Never commit your `.env` file to version control. The `.env.example` file serves as a template only.
+
 ## 🎨 Customization
 
 ### Personal Information
@@ -132,17 +159,24 @@ portfolio-website/
 │   │   ├── Navbar.jsx      # Navigation
 │   │   ├── Projects.jsx    # Projects showcase
 │   │   ├── Publications.jsx # Publications section
-│   │   └── Resume.jsx      # Resume section
-│   ├── lib/                # Utility functions
+│   │   ├── Resume.jsx      # Resume section
+│   │   └── Auth/           # Authentication components
+│   │       ├── LoginForm.jsx # Admin login form
+│   │       └── ProtectedRoute.jsx # Route protection
+│   ├── contexts/            # React contexts
+│   │   └── AuthContext.jsx # Authentication context
+│   ├── pages/               # Page components
+│   │   └── ContactAdminView.jsx # Admin dashboard
+│   ├── lib/                 # Utility functions
 │   │   ├── emailService.js # Email service logic
 │   │   └── supabase.js     # Supabase client
-│   ├── assets/             # Images and static files
-│   ├── App.jsx             # Main app component
-│   └── main.jsx            # App entry point
-├── supabase/               # Supabase configuration
-│   └── functions/          # Edge Functions
-├── public/                 # Public assets
-└── package.json            # Dependencies and scripts
+│   ├── assets/              # Images and static files
+│   ├── App.jsx              # Main app component
+│   └── main.jsx             # App entry point
+├── supabase/                # Supabase configuration
+│   └── functions/           # Edge Functions
+├── public/                  # Public assets
+└── package.json             # Dependencies and scripts
 ```
 
 ## 🚀 Deployment
