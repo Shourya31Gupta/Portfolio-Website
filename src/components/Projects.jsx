@@ -6,8 +6,18 @@ import projectsBg from "../assets/projects-bg.png";
 import financeImg from "../assets/finance-tracker.jpg";
 import readingImg from "../assets/reading-goals.png";
 import apodImg from "../assets/apod-app.png";
+import portfolioImg from "../assets/portfolio.png";
 
 const projects = [
+  {
+    title: "My Portfolio",
+    image: portfolioImg,
+    description: "Track income, expenses, and savings with an intuitive dashboard. Features real-time analytics, budget planning, and financial insights.",
+    tech: ["React", "Tailwind", "Firebase", "Chart.js"],
+    github: "https://github.com/Shourya31Gupta/Portfolio-Website",
+    live: "https://portfolio-website-shouryas-projects-6a2c0b12.vercel.app/",
+    category: "Full-Stack"
+  },
   {
     title: "Personal Finance Tracker",
     image: financeImg,
@@ -33,7 +43,7 @@ const projects = [
     tech: ["React Native", "REST API", "NASA API", "Mobile First"],
     github: "https://github.com/Shourya31Gupta/APOD-App",
     live: "https://apod-app-shouryas-projects-6a2c0b12.vercel.app/",
-    category: "Mobile App"
+    category: "Web App"
   },
 ];
 
@@ -70,7 +80,7 @@ export default function Projects() {
                 transition-all duration-300 flex flex-col justify-between h-full text-white"
             >
               {/* Category Badge */}
-              <div className="absolute top-3 left-3">
+              <div className="mb-3">
                 <span className="bg-white/10 backdrop-blur-sm text-xs px-2 py-1 rounded-full border border-white/20">
                   {project.category}
                 </span>
@@ -132,6 +142,29 @@ export default function Projects() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="relative z-10 text-center mt-12">
+        <div className="glass p-6 rounded-xl border border-white/20 bg-black/30 backdrop-blur-md max-w-lg mx-auto">
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+            Got an idea? Let's develop it together! 
+          </h3>
+          <p className="text-base text-zinc-300 mb-4">
+            Have a project in mind? I'd love to hear about it and explore how we can bring your vision to life.
+          </p>
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25"
+          >
+            Let's Connect
+          </button>
         </div>
       </div>
     </section>

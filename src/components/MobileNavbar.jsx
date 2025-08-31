@@ -39,7 +39,7 @@ export default function MobileNavbar() {
       {/* Mobile Menu Button */}
       <button 
         onClick={() => setOpen(!open)}
-        className="p-2 hover:bg-white/10 rounded-xl transition-all duration-300"
+        className="p-2 hover:bg-blue-500/10 rounded-xl transition-all duration-300"
       >
         <GiHamburgerMenu className="text-2xl" />
       </button>
@@ -71,7 +71,7 @@ export default function MobileNavbar() {
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="p-2 hover:bg-white/10 rounded-xl"
+                className="p-2 hover:bg-blue-500/10 rounded-xl"
               >
                 <FaTimes className="text-lg" />
               </button>
@@ -86,7 +86,7 @@ export default function MobileNavbar() {
                 return (
                   <button
                     key={section.id}
-                    className="justify-start text-left w-full text-lg p-4 rounded-xl hover:bg-white/10 hover:scale-105 transition-all duration-300 group"
+                    className="justify-start text-left w-full text-lg p-4 rounded-xl hover:bg-blue-500/10 hover:scale-105 transition-all duration-300 group"
                     onClick={() => scrollToSection(section.id)}
                   >
                     <Icon className="text-lg mr-3 text-zinc-400 group-hover:text-white transition-colors duration-300" />

@@ -92,7 +92,7 @@ export default function Navbar() {
             <button
               key={section.id}
               onClick={() => scrollToSection(section.id)}
-              className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 hover:bg-white/10 hover:scale-105 ${
+              className={`group w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-300 hover:bg-blue-500/10 hover:scale-105 ${
                 activeSection === section.id 
                   ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 text-blue-400" 
                   : "text-zinc-300 hover:text-white"

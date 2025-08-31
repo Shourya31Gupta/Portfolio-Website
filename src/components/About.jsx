@@ -105,22 +105,6 @@ export default function About() {
                 })}
               </div>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4">
-              <div className="glass p-4 rounded-xl text-center border border-white/20 bg-black/30 backdrop-blur-md">
-                <div className="text-2xl font-bold text-blue-400 mb-1">3+</div>
-                <div className="text-sm text-zinc-200 font-medium">Research Papers</div>
-              </div>
-              <div className="glass p-4 rounded-xl text-center border border-white/20 bg-black/30 backdrop-blur-md">
-                <div className="text-2xl font-bold text-purple-400 mb-1">5+</div>
-                <div className="text-sm text-zinc-200 font-medium">Projects</div>
-              </div>
-              <div className="glass p-4 rounded-xl text-center border border-white/20 bg-black/30 backdrop-blur-md">
-                <div className="text-2xl font-bold text-green-400 mb-1">2+</div>
-                <div className="text-sm text-zinc-200 font-medium">Years Experience</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
