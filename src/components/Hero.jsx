@@ -1,6 +1,6 @@
 import React from "react";
 import homeBg from "../assets/home-bg.png";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -88,20 +88,12 @@ export default function Hero() {
             <FaGithub className="text-lg" />
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/shourya-g/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all duration-200"
           >
             <FaLinkedin className="text-lg" />
-          </a>
-          <a
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/20 transition-all duration-200"
-          >
-            <FaTwitter className="text-lg" />
           </a>
         </div>
       </div>

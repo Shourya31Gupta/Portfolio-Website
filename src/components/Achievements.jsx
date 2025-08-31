@@ -73,7 +73,7 @@ const Achievements = () => {
       </div>
 
       {selected && (
-        <div className="fixed inset-0 bg-black/90 z-40 overflow-y-auto flex items-center justify-center px-4 py-10">
+        <div className="fixed inset-0 bg-black/90 z-[60] overflow-y-auto flex items-center justify-center px-4 py-10">
           <div className="bg-gray-900 rounded-xl p-6 max-w-6xl w-full relative">
             <button onClick={closeModal} className="absolute top-3 right-4 text-white text-2xl hover:text-red-400 transition-colors duration-200 z-10">&times;</button>
             <h3 className="text-2xl font-bold text-white mb-2">{selected.title}</h3>
@@ -81,15 +81,15 @@ const Achievements = () => {
 
             {/* Show zoomed image in center when an image is clicked */}
             {enlargedImageIndex !== null ? (
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center justify-center min-h-[500px]">
                 <div className="text-center mb-4">
                   <p className="text-blue-400 text-sm">💡 Click the image to return to gallery</p>
                 </div>
-                <div className="relative max-w-4xl w-full">
+                <div className="relative w-full max-w-5xl">
                   <img
                     src={gallery[enlargedImageIndex]}
                     alt={`Zoomed view - Image ${enlargedImageIndex + 1}`}
-                    className="w-full max-h-[70vh] object-contain rounded-lg cursor-pointer transition-all duration-300 hover:scale-105"
+                    className="w-full h-auto max-h-[65vh] object-contain rounded-lg cursor-pointer transition-all duration-300 hover:scale-105 shadow-2xl"
                     onClick={() => setEnlargedImageIndex(null)}
                   />
                 </div>
@@ -118,28 +118,7 @@ const Achievements = () => {
         </div>
       )}
 
-      {/* Enlarged Image Overlay - Comes Over the Popup */}
-      {enlargedImageIndex !== null && selected && (
-        <div className="fixed inset-0 bg-black/80 z-[45] flex items-center justify-center p-4">
-          <div className="relative max-w-4xl max-h-full">
-            <img
-              src={gallery[enlargedImageIndex]}
-              alt={`Enlarged view - Image ${enlargedImageIndex + 1}`}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              onClick={() => setEnlargedImageIndex(null)}
-            />
-            <button
-              onClick={() => setEnlargedImageIndex(null)}
-              className="absolute top-2 right-2 text-white text-2xl hover:text-red-400 transition-colors duration-200 bg-black/50 rounded-full w-8 h-8 flex items-center justify-center"
-            >
-              &times;
-            </button>
-            <div className="absolute bottom-2 left-2 text-white text-sm bg-black/50 px-2 py-1 rounded">
-              Click image to close
-            </div>
-          </div>
-        </div>
-      )}
+
     </section>
   );
 };

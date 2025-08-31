@@ -12,11 +12,11 @@ const projects = [
   {
     title: "My Portfolio",
     image: portfolioImg,
-    description: "Track income, expenses, and savings with an intuitive dashboard. Features real-time analytics, budget planning, and financial insights.",
-    tech: ["React", "Tailwind", "Firebase", "Chart.js"],
+    description: "A personal portfolio website highlighting projects, publications, achievements, and resume, with an engaging design and seamless navigation across desktop and mobile.",
+    tech: ["React", "Tailwind", "Supabase", "Vite", "SendGrid", "React Router"],
     github: "https://github.com/Shourya31Gupta/Portfolio-Website",
     live: "https://portfolio-website-shouryas-projects-6a2c0b12.vercel.app/",
-    category: "Full-Stack"
+    category: "Full-Stack Web App"
   },
   {
     title: "Personal Finance Tracker",
@@ -25,7 +25,7 @@ const projects = [
     tech: ["React", "Tailwind", "Firebase", "Chart.js"],
     github: "https://github.com/Shourya31Gupta/Personal-Finance-Tracker",
     live: "https://shouryas-finance-tracker-phi.vercel.app/",
-    category: "Full-Stack"
+    category: "Full-Stack Web App"
   },
   {
     title: "My Reading Goals",

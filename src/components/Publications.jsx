@@ -78,7 +78,7 @@ const Publications = () => {
           </div>
           <div className="glass p-4 rounded-lg text-center border border-white/10">
             <FaUsers className="text-2xl text-purple-400 mx-auto mb-2" />
-            <div className="text-lg font-bold text-white">4+</div>
+            <div className="text-lg font-bold text-white">3</div>
             <div className="text-xs text-zinc-400">Collaborators</div>
           </div>
           <div className="glass p-4 rounded-lg text-center border border-white/10">
