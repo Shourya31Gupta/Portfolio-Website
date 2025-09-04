@@ -45,7 +45,7 @@ const Resume = () => {
           </h3>
           <ul className="text-zinc-300 text-base space-y-3">
             <li>🎓 Currently pursuing Diploma in Computer Engineering</li>
-            <li>📘 Will pursue B.Tech (Lateral Entry) Post Diploma</li>
+            <li>📘 Will pursue B.Tech (Lateral Entry) after Diploma</li>
             <li>🧠 Published 4 Research Papers</li>
           </ul>
         </div>
@@ -78,7 +78,7 @@ const Resume = () => {
             <span className="bg-zinc-700 px-3 py-1 rounded-full">Teamwork</span>
             <span className="bg-zinc-700 px-3 py-1 rounded-full">Critical Thinking</span>
             <span className="bg-zinc-700 px-3 py-1 rounded-full">Fast Learner</span>
-            <span className="bg-zinc-700 px-3 py-1 rounded-full">Co-operative</span>
+            <span className="bg-zinc-700 px-3 py-1 rounded-full">Cooperative</span>
           </div>
         </div>
       </div>
