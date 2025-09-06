@@ -49,7 +49,7 @@ const projects = [
   {
     title: "Resume Helper Bot",
     image: botImg,
-    description: "It is an AI-powered tool where you can upload your resume, get a concise summary of it, and receive an improved version with enhanced structure, wording, and presentation for better impact.",
+    description: "It is an AI-powered tool where you can create a resume using AI, upload your resume, get a concise summary of it, and receive an improved version with enhanced structure, wording, and presentation for better impact.",
     tech: ["Vite", "React", "Tailwind CSS", "Gemini API"],
     github: "https://github.com/Shourya31Gupta/Resume-Helper-Bot",
     live: "https://resume-helper-bot.vercel.app/",
