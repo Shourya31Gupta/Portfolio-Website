@@ -5,7 +5,7 @@
 export const sendContactNotification = async (contactData) => {
   try {
     // Send email via Supabase Edge Function
-    const EDGE_FUNCTION_URL = 'https://ldsmawygbmztxkoyiwor.supabase.co/functions/v1/send-contact-email';
+    const EDGE_FUNCTION_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
     
     console.log('📧 Attempting to send email via Supabase Edge Function...');
     
