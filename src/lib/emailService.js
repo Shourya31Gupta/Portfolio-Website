@@ -1,38 +1,52 @@
-// Email notification service for contact form submissions
-// This will send you an email every time someone contacts you
+import emailjs from '@emailjs/browser';
 
-// Supabase Edge Function (FREE - Primary method)
+// Email notification service for contact form submissions
+// This will send you an email every time someone contacts you using EmailJS
+
 export const sendContactNotification = async (contactData) => {
   try {
-    // Send email via Supabase Edge Function
-    const EDGE_FUNCTION_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`;
+    console.log('📧 Attempting to send email via EmailJS...');
     
-    console.log('📧 Attempting to send email via Supabase Edge Function...');
+    // Check if EmailJS environment variables are set
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.warn('⚠️ EmailJS credentials are missing. Check your .env file.');
+      throw new Error('Email service not configured');
+    }
+
+    // Map the contact data to the template variables expected by EmailJS
+    // Note: You must ensure these variable names match exactly what you set up in your EmailJS template!
+    const templateParams = {
+      name: contactData.name,
+      email: contactData.email,
+      message: contactData.message,
+      title: 'New Portfolio Inquiry',
+    };
+
+    const response = await emailjs.send(
+      serviceId,
+      templateId,
+      templateParams,
+      publicKey
+    );
     
-    const response = await fetch(EDGE_FUNCTION_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-      },
-      body: JSON.stringify({ contactData }),
-    });
+    console.log('📧 EmailJS response:', response);
     
-    const result = await response.json();
-    console.log('📧 Edge function response:', result);
-    
-    if (result.success) {
-      return { success: true, message: 'Email notification sent via Supabase!' };
+    if (response.status === 200) {
+      return { success: true, message: 'Email notification sent via EmailJS!' };
     } else {
-      throw new Error(result.error || 'Failed to send email');
+      throw new Error(response.text || 'Failed to send email');
     }
     
   } catch (error) {
-    console.error('❌ Edge function error:', error);
+    console.error('❌ EmailJS error:', error);
     
-    // Fallback to console logging if edge function fails
+    // Fallback to console logging if email service fails
     console.log('📧 ===== FALLBACK EMAIL NOTIFICATION =====');
-    console.log('📧 To: shourya31gupta@gmail.com');
+    console.log('📧 To: You (via EmailJS configuration)');
     console.log('📧 Subject: New Contact Form Submission - Portfolio Website');
     console.log('📧 Contact Details:');
     console.log(`📧   Name: ${contactData.name}`);

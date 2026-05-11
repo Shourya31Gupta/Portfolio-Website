@@ -8,7 +8,7 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 - **📱 Fully Responsive** - Works perfectly on all devices (desktop, tablet, mobile)
 - **📧 Contact Form** - Functional contact form with real-time email notifications
 - **🗄️ Database Integration** - Supabase backend for storing contact submissions
-- **📬 Email Service** - SendGrid integration for instant email delivery
+- **📬 Email Service** - EmailJS integration for instant email delivery
 - **⚡ Fast Performance** - Built with Vite for optimal loading speeds
 - **🎯 SEO Optimized** - Proper meta tags and semantic HTML structure
 
@@ -22,10 +22,9 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 - **React Icons** - Beautiful icon library for enhanced UI
 
 ### Backend & Services
-- **Supabase** - Backend-as-a-Service for database and Edge Functions
+- **Supabase** - Backend-as-a-Service for database
 - **PostgreSQL** - Reliable database for storing contact form submissions
-- **SendGrid** - Professional email service for contact notifications
-- **Edge Functions** - Serverless functions for email processing
+- **EmailJS** - Client-side email service for contact notifications
 
 ### Development Tools
 - **ESLint** - Code quality and consistency
@@ -38,7 +37,7 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 - Node.js (v16 or higher)
 - npm or yarn package manager
 - Supabase account
-- SendGrid account
+- EmailJS account
 
 ### Installation
 
@@ -55,12 +54,17 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
 
 3. **Environment Setup**
    - Copy `.env.example` to `.env`
-   - Fill in your Supabase credentials and admin panel credentials:
+   - Fill in your credentials:
      ```env
      VITE_SUPABASE_URL=your-supabase-project-url
      VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+     
      VITE_ADMIN_USERNAME=your-admin-username
      VITE_ADMIN_PASSWORD=your-admin-password
+     
+     VITE_EMAILJS_SERVICE_ID=your_emailjs_service_id
+     VITE_EMAILJS_TEMPLATE_ID=your_emailjs_template_id
+     VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
      ```
 
 4. **Start development server**
@@ -87,21 +91,12 @@ A modern, responsive portfolio website built with React, featuring a beautiful d
    );
    ```
 
-### Edge Function Setup
-1. Navigate to Supabase Dashboard → Edge Functions
-2. Create a new function: `send-contact-email`
-3. Deploy the function code from `supabase/functions/send-contact-email/index.ts`
-4. Set environment variables:
-   - `SENDGRID_API_KEY`: Your SendGrid API key
-   - `TO_EMAIL`: Your email address for notifications
-
-## 📧 Email Service Setup
-
-### SendGrid Configuration
-1. Create a SendGrid account
-2. Generate an API key with "Mail Send" permissions
-3. Verify your sender email address
-4. Add the API key to your Supabase Edge Function environment variables
+### EmailJS Configuration
+1. Create a free account at [EmailJS](https://www.emailjs.com/)
+2. Add a new Email Service (e.g., Gmail) to get your `Service ID`
+3. Create an Email Template with variables like `{{from_name}}`, `{{from_email}}`, and `{{message}}` to get your `Template ID`
+4. Find your `Public Key` in the Account section
+5. Add these credentials to your `.env` file
 
 ## 🔐 Admin Panel Setup
 
@@ -174,7 +169,6 @@ portfolio-website/
 │   ├── App.jsx              # Main app component
 │   └── main.jsx             # App entry point
 ├── supabase/                # Supabase configuration
-│   └── functions/           # Edge Functions
 ├── public/                  # Public assets
 └── package.json             # Dependencies and scripts
 ```
@@ -191,10 +185,7 @@ npm run build
 2. Set environment variables in the deployment platform
 3. Deploy automatically on push to main branch
 
-### Supabase Edge Functions
-```bash
-supabase functions deploy send-contact-email
-```
+
 
 ## 🔧 Available Scripts
 
@@ -227,7 +218,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **React Team** - For the amazing framework
 - **Tailwind CSS** - For the utility-first CSS approach
 - **Supabase** - For the excellent backend services
-- **SendGrid** - For reliable email delivery
+- **EmailJS** - For reliable client-side email delivery
 - **Vite** - For the fast build tool
 
 
