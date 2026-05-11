@@ -14,7 +14,7 @@ const projects = [
     title: "My Portfolio",
     image: portfolioImg,
     description: "A personal portfolio website highlighting projects, publications, achievements, and resume, with an engaging design and seamless navigation across desktop and mobile.",
-    tech: ["React", "Tailwind", "Supabase", "Vite", "SendGrid", "React Router"],
+    tech: ["React", "Tailwind", "Supabase", "Vite", "EmailJS", "React Router"],
     github: "https://github.com/Shourya31Gupta/Portfolio-Website",
     live: "https://portfolio-website-shouryas-projects-6a2c0b12.vercel.app/",
     category: "Full-Stack Web App"
@@ -23,19 +23,19 @@ const projects = [
     title: "Personal Finance Tracker",
     image: financeImg,
     description: "Track income, expenses, and savings with an intuitive dashboard. Features real-time analytics, budget planning, and financial insights.",
-    tech: ["React", "Tailwind", "Firebase", "Chart.js"],
+    tech: ["React", "Tailwind", "Supabase", "Chart.js"],
     github: "https://github.com/Shourya31Gupta/Personal-Finance-Tracker",
-    live: "https://shouryas-finance-tracker-phi.vercel.app/",
+    live: "https://personal-finance-tracker-lovat-five.vercel.app/login",
     category: "Full-Stack Web App"
   },
   {
     title: "My Reading Goals",
     image: readingImg,
     description: "Set and track your annual reading goals with monthly stats. Includes progress tracking, book recommendations, and reading analytics.",
-    tech: ["React", "Firebase", "Tailwind CSS", "Local Storage"],
+    tech: ["React", "Supabase", "Tailwind CSS", "Local Storage"],
     github: "https://github.com/Shourya31Gupta/My-Reading-Goals",
     live: "https://my-reading-goals-shouryas-projects-6a2c0b12.vercel.app/",
-    category: "Web App"
+    category: "Full-Stack Web App"
   },
   {
     title: "APOD App",
@@ -73,7 +73,7 @@ export default function Projects() {
           My <span className="gradient-text">Projects</span>
         </h2>
         <p className="text-lg text-zinc-300 max-w-2xl mx-auto">
-          Here are some of the projects I've built, showcasing my skills in full-stack development, 
+          Here are some of the projects I've built, showcasing my skills in full-stack development,
           mobile apps, and innovative solutions.
         </p>
         <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
@@ -131,10 +131,10 @@ export default function Projects() {
 
               {/* Action Buttons */}
               <div className="flex gap-2 mt-auto">
-                <a 
-                  href={project.live} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-sm border-0 px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors duration-200"
                 >
                   <FaExternalLinkAlt className="text-xs" />
@@ -159,7 +159,7 @@ export default function Projects() {
       <div className="relative z-10 text-center mt-12">
         <div className="glass p-6 rounded-xl border border-white/20 bg-black/30 backdrop-blur-md max-w-lg mx-auto">
           <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-            Got an idea? Let's develop it together! 
+            Got an idea? Let's develop it together!
           </h3>
           <p className="text-base text-zinc-300 mb-4">
             Have a project in mind? I'd love to hear about it and explore how we can bring your vision to life.

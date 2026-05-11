@@ -38,6 +38,15 @@ const publications = [
     link: "https://irjet.net/archives/V12/i8/IRJET-V12I804.pdf",
     abstract: "Examining the convergence of classical and quantum computing approaches for next-generation computational systems.",
     category: "Computing"
+  },
+  {
+    title: "UrbanEye: An Intelligent Eye For A Smarter City",
+    authors: "Shourya Gupta, Raj Shirdhankar, Aashay Kulkarni, Sanchit Dage",
+    journal: "International Research Journal Of Engineering & Technology",
+    date: "March, 2026",
+    link: "https://www.irjet.net/archives/V13/i3/IRJET-V13I03240.pdf",
+    abstract: "An AI-powered urban issue mapping system that enables citizens to report, track, and manage civic problems in real time through a mobile application integrated with cloud and map-based technologies.",
+    category: "AI-Powered Smart City Management"
   }
 ];
 
@@ -55,7 +64,7 @@ const Publications = () => {
     >
       {/* Simple overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
-      
+
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Section Header */}
@@ -106,12 +115,12 @@ const Publications = () => {
                       {pub.category}
                     </span>
                   </div>
-                  
+
                   {/* Title */}
                   <h3 className="text-lg md:text-xl font-bold mb-2 text-white group-hover:text-blue-400 transition-colors duration-200">
                     {pub.title}
                   </h3>
-                  
+
                   {/* Abstract */}
                   <p className="text-sm text-zinc-300 leading-relaxed">
                     {pub.abstract}
@@ -130,7 +139,7 @@ const Publications = () => {
                     <div className="text-sm text-white font-medium">{pub.authors}</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-1 flex items-center justify-center">
                     <FaJournalWhills className="text-white text-xs" />
@@ -140,7 +149,7 @@ const Publications = () => {
                     <div className="text-sm text-white font-medium">{pub.journal}</div>
                   </div>
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 p-1 flex items-center justify-center">
                     <FaCalendar className="text-white text-xs" />

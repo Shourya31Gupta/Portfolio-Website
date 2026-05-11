@@ -6,7 +6,7 @@ import emailjs from '@emailjs/browser';
 export const sendContactNotification = async (contactData) => {
   try {
     console.log('📧 Attempting to send email via EmailJS...');
-    
+
     // Check if EmailJS environment variables are set
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -32,18 +32,18 @@ export const sendContactNotification = async (contactData) => {
       templateParams,
       publicKey
     );
-    
+
     console.log('📧 EmailJS response:', response);
-    
+
     if (response.status === 200) {
       return { success: true, message: 'Email notification sent via EmailJS!' };
     } else {
       throw new Error(response.text || 'Failed to send email');
     }
-    
+
   } catch (error) {
     console.error('❌ EmailJS error:', error);
-    
+
     // Fallback to console logging if email service fails
     console.log('📧 ===== FALLBACK EMAIL NOTIFICATION =====');
     console.log('📧 To: You (via EmailJS configuration)');
@@ -54,7 +54,7 @@ export const sendContactNotification = async (contactData) => {
     console.log(`📧   Message: ${contactData.message}`);
     console.log(`📧   Time: ${new Date().toLocaleString()}`);
     console.log('📧 ================================');
-    
+
     return { success: false, error: error.message };
   }
 };
@@ -77,7 +77,7 @@ export const testEmailService = () => {
     message: 'This is a test message to verify email notifications are working.',
     timestamp: new Date().toISOString()
   };
-  
+
   console.log('🧪 Testing email service...');
   sendContactNotification(testData);
 };

@@ -13,10 +13,8 @@ export default function About() {
   ];
 
   const achievements = [
-    "Published 4 research papers",
-    "Co-authored 3 research papers",
-    "Specialized in Swarm Robotics",
-    "Expertise in Healthcare Robotics",
+    "Published 5 research papers",
+    "Co-authored 4 research papers",
     "Diploma in Computer Engineering",
     "Passionate about meaningful tech"
   ];
@@ -82,7 +80,7 @@ export default function About() {
           </div>
 
           {/* Right Column - Skills & Visual Elements */}
-          <div className="space-y-8 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+          <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             {/* Skills Grid */}
             <div className="glass p-8 rounded-2xl border border-white/20 bg-black/30 backdrop-blur-md">
               <h4 className="text-xl font-bold mb-6 text-white text-center">Core Skills</h4>
