@@ -2,14 +2,23 @@
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import projectsBg from "../assets/projects-bg.png";
 
-// ✅ Importing images properly
 import financeImg from "../assets/finance-tracker.jpg";
 import readingImg from "../assets/reading-goals.png";
 import apodImg from "../assets/apod-app.png";
 import portfolioImg from "../assets/portfolio.png";
 import botImg from "../assets/resume-bot.png";
+import urbaneyeImg from "../assets/urbaneye.png";
 
 const projects = [
+  {
+    title: "UrbanEye: An Intelligent Eye For A Smarter City",
+    image: urbaneyeImg,
+    description: "A civic-tech platform enabling real-time reporting and tracking of urban issues",
+    tech: ["React Native", "Supabase", "react-leaflet", "Expo", "Expo Router"],
+    github: "https://github.com/UrbanEyeDev/Project-Main",
+    live: "https://drive.google.com/drive/folders/1jhiwrKQa23tr6DBxD4GjDEYZOsDg-Z3e?usp=drive_link",
+    category: "Full-Stack React Native App"
+  },
   {
     title: "My Portfolio",
     image: portfolioImg,
