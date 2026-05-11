@@ -10,15 +10,28 @@ const Achievements = () => {
   const [gallery, setGallery] = useState([]);
   const [enlargedImageIndex, setEnlargedImageIndex] = useState(null);
 
+  const loadGalleryImage = async (folder, index) => {
+    const extensions = ["jpg", "jpeg"];
+    for (const ext of extensions) {
+      try {
+        const img = await import(`../assets/${folder}/img${index}.${ext}`);
+        return img.default;
+      } catch (error) {
+        // try next extension
+      }
+    }
+    throw new Error(`Gallery image not found: ${folder}/img${index}.{jpg,jpeg}`);
+  };
+
   const openModal = async (achievement) => {
     const images = [];
-    try {
-      for (let i = 1; i <= 3; i++) {
-        const img = await import(`../assets/${achievement.folder}/img${i}.jpg`);
-        images.push(img.default);
+    for (let i = 1; i <= 3; i++) {
+      try {
+        const imageSrc = await loadGalleryImage(achievement.folder, i);
+        images.push(imageSrc);
+      } catch (error) {
+        console.warn(error.message);
       }
-    } catch (error) {
-      console.warn("Some gallery images might be missing:", error);
     }
     setSelected(achievement);
     setGallery(images);
